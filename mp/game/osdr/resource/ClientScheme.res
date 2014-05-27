@@ -306,7 +306,7 @@ Scheme
 		{
 			"1"
 			{
-				"name"		"Verdana"
+				"name"		"Orbitron Medium"
 				"tall"		"9"
 				"weight"	"700"
 				"antialias" "1"
@@ -314,7 +314,7 @@ Scheme
 			}
 			"2"
 			{
-				"name"		"Verdana"
+				"name"		"Orbitron Medium"
 				"tall"		"12"
 				"weight"	"700"
 				"antialias" "1"
@@ -322,7 +322,7 @@ Scheme
 			}
 			"3"
 			{
-				"name"		"Verdana"
+				"name"		"Orbitron Medium"
 				"tall"		"14"
 				"weight"	"900"
 				"antialias" "1"
@@ -330,7 +330,7 @@ Scheme
 			}
 			"4"
 			{
-				"name"		"Verdana"
+				"name"		"Orbitron Medium"
 				"tall"		"20"
 				"weight"	"900"
 				"antialias" "1"
@@ -338,7 +338,7 @@ Scheme
 			}
 			"5"
 			{
-				"name"		"Verdana"
+				"name"		"Orbitron Medium"
 				"tall"		"24"
 				"weight"	"900"
 				"antialias" "1"
@@ -350,7 +350,7 @@ Scheme
 		{
 			"1"
 			{
-				"name"		"Verdana"
+				"name"		"Orbitron Light"
 				"tall"		"12"
 				"weight"	"0"
 				"range"		"0x0000 0x017F"
@@ -358,7 +358,7 @@ Scheme
 			}
 			"2"
 			{
-				"name"		"Verdana"
+				"name"		"Orbitron Light"
 				"tall"		"13"
 				"weight"	"0"
 				"range"		"0x0000 0x017F"
@@ -366,7 +366,7 @@ Scheme
 			}
 			"3"
 			{
-				"name"		"Verdana"
+				"name"		"Orbitron Light"
 				"tall"		"14"
 				"weight"	"0"
 				"range"		"0x0000 0x017F"
@@ -375,7 +375,7 @@ Scheme
 			}
 			"4"
 			{
-				"name"		"Verdana"
+				"name"		"Orbitron Light"
 				"tall"		"20"
 				"weight"	"0"
 				"range"		"0x0000 0x017F"
@@ -384,7 +384,7 @@ Scheme
 			}
 			"5"
 			{
-				"name"		"Verdana"
+				"name"		"Orbitron Light"
 				"tall"		"24"
 				"weight"	"0"
 				"range"		"0x0000 0x017F"
@@ -403,7 +403,7 @@ Scheme
 		{
 			"1"
 			{
-				"name"		"Verdana"
+				"name"		"Orbitron Light"
 				"tall"		"12"
 				"weight"	"0"
 				"range"		"0x0000 0x017F" //	Basic Latin, Latin-1 Supplement, Latin Extended-A
@@ -411,7 +411,7 @@ Scheme
 			}
 			"2"
 			{
-				"name"		"Verdana"
+				"name"		"Orbitron Light"
 				"tall"		"13"
 				"weight"	"0"
 				"range"		"0x0000 0x017F" //	Basic Latin, Latin-1 Supplement, Latin Extended-A
@@ -419,7 +419,7 @@ Scheme
 			}
 			"3"
 			{
-				"name"		"Verdana"
+				"name"		"Orbitron Light"
 				"tall"		"14"
 				"weight"	"0"
 				"range"		"0x0000 0x017F" //	Basic Latin, Latin-1 Supplement, Latin Extended-A
@@ -428,7 +428,7 @@ Scheme
 			}
 			"4"
 			{
-				"name"		"Verdana"
+				"name"		"Orbitron Light"
 				"tall"		"20"
 				"weight"	"0"
 				"range"		"0x0000 0x017F" //	Basic Latin, Latin-1 Supplement, Latin Extended-A
@@ -437,7 +437,7 @@ Scheme
 			}
 			"5"
 			{
-				"name"		"Verdana"
+				"name"		"Orbitron Light"
 				"tall"		"24"
 				"weight"	"0"
 				"range"		"0x0000 0x017F" //	Basic Latin, Latin-1 Supplement, Latin Extended-A
@@ -446,7 +446,7 @@ Scheme
 			}
 			"6"
 			{
-				"name"		"Verdana"
+				"name"		"Orbitron Light"
 				"tall"		"12"
 				"range" 		"0x0000 0x00FF"
 				"weight"		"0"
@@ -463,7 +463,7 @@ Scheme
 		{
 			"1"
 			{
-				"name"		"Verdana Bold"
+				"name"		"Orbitron Bold"
 				"tall"		"18"
 				"weight"	"500"
 			}
@@ -564,7 +564,7 @@ Scheme
 		{
 			"1"
 			{
-				"name"		"Verdana"
+				"name"		"Orbitron Black"
 				"tall"		"11"
 				"weight"	"700"
 				"antialias" "1"
@@ -575,7 +575,7 @@ Scheme
 		{
 			"1"
 			{
-				"name"		"Verdana" [!$OSX]
+				"name"		"Orbitron Black" [!$OSX]
 				"name"		"Helvetica Bold" [$OSX]
 				"tall"		"14"
 				"weight"	"1000"
@@ -587,7 +587,7 @@ Scheme
 		{
 			"1"
 			{
-				"name"		"Verdana" [!$OSX]
+				"name"		"Orbitron Light" [!$OSX]
 				"name"		"Helvetica" [$OSX]
 				"tall"		"11"
 				"weight"	"0"
@@ -599,7 +599,7 @@ Scheme
 		{
 			"1"
 			{
-				"name"		"Verdana"
+				"name"		"Orbitron Black"
 				"tall"		"8"
 				"weight"	"700"
 				"antialias" "1"
@@ -607,7 +607,7 @@ Scheme
 			}
 			"2"
 			{
-				"name"		"Verdana"
+				"name"		"Orbitron Black"
 				"tall"		"10"
 				"weight"	"700"
 				"antialias" "1"
@@ -615,7 +615,7 @@ Scheme
 			}
 			"3"
 			{
-				"name"		"Verdana"
+				"name"		"Orbitron Black"
 				"tall"		"12"
 				"weight"	"900"
 				"antialias" "1"
@@ -623,7 +623,7 @@ Scheme
 			}
 			"4"
 			{
-				"name"		"Verdana"
+				"name"		"Orbitron Black"
 				"tall"		"16"
 				"weight"	"900"
 				"antialias" "1"
@@ -631,7 +631,7 @@ Scheme
 			}
 			"5"
 			{
-				"name"		"Verdana"
+				"name"		"Orbitron Black"
 				"tall"		"17"
 				"weight"	"1000"
 				"antialias" "1"
@@ -662,7 +662,7 @@ Scheme
 		{
 			"1"
 			{
-				"name"		"Tahoma" [!$OSX]
+				"name"		"Orbitron Light" [!$OSX]
 				"name"		"Verdana" [$OSX]
 				"tall"		"26" [!$OSX]
 				"tall"		"24" [$OSX]
@@ -674,7 +674,7 @@ Scheme
 		{
 			"1"
 			{
-				"name"		"Tahoma" [!$OSX]
+				"name"		"Orbitron Light" [!$OSX]
 				"name"		"Verdana Italic" [$OSX]
 				"tall"		"26" [!$OSX]
 				"tall"		"24" [$OSX]
@@ -687,7 +687,7 @@ Scheme
 		{
 			"1"
 			{
-				"name"		"Tahoma" [!$OSX]
+				"name"		"Orbitron Bold" [!$OSX]
 				"name"		"Verdana Bold" [$OSX]
 				"tall"		"26" [!$OSX]
 				"tall"		"24" [$OSX]
@@ -699,7 +699,7 @@ Scheme
 		{
 			"1"
 			{
-				"name"		"Tahoma" [!$OSX]
+				"name"		"Orbitron Light" [!$OSX]
 				"name"		"Verdana Bold Italic" [$OSX]
 				"tall"		"26" [!$OSX]
 				"tall"		"24" [$OSX]
@@ -712,7 +712,7 @@ Scheme
 		{
 			"1"
 			{
-				"name"		"Tahoma" [!$OSX]
+				"name"		"Orbitron Light" [!$OSX]
 				"name"		"Verdana" [$OSX]
 				"tall"		"16" [!$OSX]
 				"tall"		"14" [$OSX]
@@ -757,7 +757,7 @@ Scheme
 		{
 			"1"
 			{
-				"name"  "HL2MP"
+				"name"  "Orbitron Black"
 				"tall"  "46"
 				"weight" "0"
 				"additive" "0"
@@ -768,7 +768,7 @@ Scheme
 		{
 			"1"
 			{
-				"name"		"HalfLife2"
+				"name"		"Orbitron Black"
 				"tall"		"128"
 				"weight"	"0"
 				"antialias" "1"
@@ -780,7 +780,7 @@ Scheme
 		{
 			"1"
 			{
-				"name"		"Trebuchet MS"
+				"name"		"Orbitron Black"
 				"tall"		"20"
 				"weight"	"900"
 				"antialias" "1"
@@ -791,7 +791,7 @@ Scheme
 		{
 			"1"
 			{
-				"name"		"HalfLife2"
+				"name"		"Orbitron Black"
 				"tall"		"48"
 				"weight"	"0"
 				"antialias" "1"
@@ -803,7 +803,7 @@ Scheme
 		{
 			"1"
 			{
-				"name"		"Verdana"
+				"name"		"Orbitron Light"
 				"tall"		"9"
 				"weight"	"900"
 				"antialias" "1"
@@ -814,8 +814,8 @@ Scheme
 			// note that this scales with the screen resolution
 			"1"
 			{
-				"name"		"Trebuchet MS" [!$OSX]
-				"name"		"Helvetica" [$OSX]
+				"name"		"Orbitron Light" [!$OSX]
+				"name"		"Orbitron Light" [$OSX]
 				"tall"		"18"
 				"weight"	"900"
 				"antialias" "1"
@@ -826,7 +826,7 @@ Scheme
 		{
 			"1"
 			{
-				"name"		"Verdana"
+				"name"		"Orbitron Medium"
 				"tall"		"12"
 				"weight"	"700"
 				"yres"	"480 599"
@@ -834,7 +834,7 @@ Scheme
 			}
 			"2"
 			{
-				"name"		"Verdana"
+				"name"		"Orbitron Medium"
 				"tall"		"13"
 				"weight"	"700"
 				"yres"	"600 767"
@@ -842,7 +842,7 @@ Scheme
 			}
 			"3"
 			{
-				"name"		"Verdana"
+				"name"		"Orbitron Medium"
 				"tall"		"14"
 				"weight"	"700"
 				"yres"	"768 1023"
@@ -850,7 +850,7 @@ Scheme
 			}
 			"4"
 			{
-				"name"		"Verdana"
+				"name"		"Orbitron Medium"
 				"tall"		"20"
 				"weight"	"700"
 				"yres"	"1024 1199"
@@ -858,7 +858,7 @@ Scheme
 			}
 			"5"
 			{
-				"name"		"Verdana"
+				"name"		"Orbitron Medium"
 				"tall"		"24"
 				"weight"	"700"
 				"yres"	"1200 10000"
@@ -869,7 +869,7 @@ Scheme
 		{
 			"1"
 			{
-				"name"		"Trebuchet MS"
+				"name"		"Orbitron Light"
 				"tall"		"24"
 				"weight"	"900"
 				"range"		"0x0000 0x007F"	//	Basic Latin
@@ -894,7 +894,7 @@ Scheme
 		{
 			"1"
 			{
-				"name"		"Verdana"
+				"name"		"Orbitron Light"
 				"tall"		"10"
 				"weight"	"0"
 				"range"		"0x0000 0x017F" //	Basic Latin, Latin-1 Supplement, Latin Extended-A
@@ -903,7 +903,7 @@ Scheme
 			}
 			"2"
 			{
-				"name"		"Verdana"
+				"name"		"Orbitron Light"
 				"tall"		"12"
 				"weight"	"0"
 				"range"		"0x0000 0x017F" //	Basic Latin, Latin-1 Supplement, Latin Extended-A
@@ -912,7 +912,7 @@ Scheme
 			}
 			"3"
 			{
-				"name"		"Verdana"
+				"name"		"Orbitron Light"
 				"tall"		"15"
 				"weight"	"0"
 				"range"		"0x0000 0x017F" //	Basic Latin, Latin-1 Supplement, Latin Extended-A
@@ -1578,6 +1578,10 @@ Scheme
 		"1"		"resource/HALFLIFE2.ttf"
 		"1"		"resource/HL2MP.ttf"
 		"2"		"resource/HL2crosshairs.ttf"
+		"3"		"resource/Orbitron Light.ttf"
+		"4"		"resource/Orbitron Bold.ttf"
+		"5"		"resource/Orbitron Black.ttf"
+		"6"		"resource/Orbitron Medium.ttf"
 	}
 
 }
