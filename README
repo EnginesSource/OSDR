@@ -1,43 +1,22 @@
-               SOURCE 1 SDK LICENSE
+This is an open source Deathrun inspired mod for the SDK 2013 multiplayer Source Engine.
 
-Source SDK Copyright(c) Valve Corp.  
+For those interested in contributing:
+Anyone is welcome to contribute. Fork this branch and make your changes then make pull 
+requests and a group over seeing the project will review them and decide if they are 
+in the best interest for the mod and if they are of good enough quality. All discussions 
+by this group will be posted in your pull request along with any suggestions so as to
+help make sure you and them are of the same understanding of why you got decline and what
+changes you need to do to get accepted. For a more in depth explanation please read the
+wiki page on this topic.
+	
+For those interested in playing/testing:
+Please read the documentation that was setup for this on the wiki.
 
-THIS DOCUMENT DESCRIBES A CONTRACT BETWEEN YOU AND VALVE 
-CORPORATION ("Valve").  PLEASE READ IT BEFORE DOWNLOADING OR USING 
-THE SOURCE ENGINE SDK ("SDK"). BY DOWNLOADING AND/OR USING THE 
-SOURCE ENGINE SDK YOU ACCEPT THIS LICENSE. IF YOU DO NOT AGREE TO 
-THE TERMS OF THIS LICENSE PLEASE DON’T DOWNLOAD OR USE THE SDK.  
-
-  You may, free of charge, download and use the SDK to develop a modified Valve game 
-running on the Source engine.  You may distribute your modified Valve game in source and 
-object code form, but only for free. Terms of use for Valve games are found in the Steam 
-Subscriber Agreement located here: http://store.steampowered.com/subscriber_agreement/ 
-
-  You may copy, modify, and distribute the SDK and any modifications you make to the 
-SDK in source and object code form, but only for free.  Any distribution of this SDK must 
-include this LICENSE file and thirdpartylegalnotices.txt.  
- 
-  Any distribution of the SDK or a substantial portion of the SDK must include the above 
-copyright notice and the following: 
-
-    DISCLAIMER OF WARRANTIES.  THE SOURCE SDK AND ANY 
-    OTHER MATERIAL DOWNLOADED BY LICENSEE IS PROVIDED 
-    "AS IS".  VALVE AND ITS SUPPLIERS DISCLAIM ALL 
-    WARRANTIES WITH RESPECT TO THE SDK, EITHER EXPRESS 
-    OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, IMPLIED 
-    WARRANTIES OF MERCHANTABILITY, NON-INFRINGEMENT, 
-    TITLE AND FITNESS FOR A PARTICULAR PURPOSE.  
-
-    LIMITATION OF LIABILITY.  IN NO EVENT SHALL VALVE OR 
-    ITS SUPPLIERS BE LIABLE FOR ANY SPECIAL, INCIDENTAL, 
-    INDIRECT, OR CONSEQUENTIAL DAMAGES WHATSOEVER 
-    (INCLUDING, WITHOUT LIMITATION, DAMAGES FOR LOSS OF 
-    BUSINESS PROFITS, BUSINESS INTERRUPTION, LOSS OF 
-    BUSINESS INFORMATION, OR ANY OTHER PECUNIARY LOSS) 
-    ARISING OUT OF THE USE OF OR INABILITY TO USE THE 
-    ENGINE AND/OR THE SDK, EVEN IF VALVE HAS BEEN 
-    ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.  
- 
-       
-If you would like to use the SDK for a commercial purpose, please contact Valve at 
-sourceengine@valvesoftware.com.
+For those interested in using code/assets:
+This mod uses a Attribution-NonCommercial 4.0 International license
+You are welcome to use code/assets as long as it is for a nonprofit purpose (THIS INCLUDES DONATIONS) as long as credit is given.
+Basically use this stuff either to learn or for use in your own free mods.
+PLEASE BE AWARE THAT THIS ALSO APPLIES TO SERVERS THAT ARE NOT RELATED TO THIS MOD. FOR EXAMPLE IF YOU ARE HOSTING A MAP
+THAT ORIGINATED FROM THIS MOD ON CSS YOU CAN NOT RUN ADS ON YOUR SERVER OR ACCEPT DONATIONS AS THAT BREAKS OUR LICENSE.
+This license was selected to allow people to learn from our work while protecting those who contributed.
+Please read the MOD LICENSE and VALVE LICENSE files for more information.
