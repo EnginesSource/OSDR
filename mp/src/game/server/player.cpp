@@ -2905,6 +2905,7 @@ void CBasePlayer::IncrementFragCount( int nCount )
 	pl.frags = m_iFrags;
 }
 
+
 void CBasePlayer::ResetDeathCount()
 {
 	m_iDeaths = 0;
@@ -2916,6 +2917,7 @@ void CBasePlayer::IncrementDeathCount( int nCount )
 	m_iDeaths += nCount;
 	pl.deaths = m_iDeaths;
 }
+
 
 void CBasePlayer::AddPoints( int score, bool bAllowNegativeScore )
 {
