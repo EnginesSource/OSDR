@@ -34,6 +34,11 @@
 		"label" "#GameUI_GameMenu_CreateServer"
 		"command" "OpenCreateMultiplayerGameDialog"
 	}
+	"7"
+	{
+		"label" "Change Player Model"
+		"command" "engine TogglePlayerModelPanel"
+	}
 	"10"
 	{
 		"label" "#GameUI_GameMenu_Options"
