@@ -752,6 +752,8 @@ ConVarRef suitcharger( "sk_suitcharger" );
 	void CMultiplayRules::PlayerKilled( CBasePlayer *pVictim, const CTakeDamageInfo &info )
 	{
 		DeathNotice( pVictim, info );
+		const char *suiciders_name = "Bob";
+		char suicideBuffer[256];
 
 		// Find the killer & the scorer
 		CBaseEntity *pInflictor = info.GetInflictor();
@@ -772,6 +774,11 @@ ConVarRef suitcharger( "sk_suitcharger" );
 			{
 				// Players lose a frag for killing themselves
 				pVictim->IncrementFragCount( -1 );
+				//Added custom suicide message to chat --wazanator
+				suiciders_name = pVictim->GetPlayerName();
+				strcpy(suicideBuffer, suiciders_name);
+				strcat(suicideBuffer, " offed themselves!");
+				UTIL_SayTextAll(suicideBuffer);
 			}			
 		}
 		else if ( pScorer )
