@@ -77,6 +77,37 @@ const char *g_ppszRandomCitizenModels[] =
 	"models/humans/group03/female_07.mdl",
 	"models/humans/group03/male_08.mdl",
 	"models/humans/group03/male_09.mdl",
+	"models/gordon/gordon.mdl",
+	"models/r_eng_f/resis_engineer_female.mdl",
+	"models/r_eng_fxss1/r_eng_fxss1.mdl",
+	"models/r_eng_fxss2/r_eng_fxss2.mdl",
+	"models/r_eng_m/resis_engineer_male.mdl",
+	"models/r_eng_mmxss1/r_eng_mxss1.mdl",
+	"models/r_eng_mmxss2/r_eng_mxss2.mdl",
+	"models/r_med_f/resis_medic_female.mdl",
+	"models/r_med_fxss1/r_med_fxss1.mdl",
+	"models/r_med_fxss2/r_med_fxss2.mdl",
+	"models/r_med_m/resis_medic_male.mdl",
+	"models/r_med_mxss1/r_med_mxss1.mdl",
+	"models/r_med_mxss2/r_med_mxss2.mdl",
+	"models/r_nor_f/resis_normal_female.mdl",
+	"models/r_nor_fxss1/r_nor_fxss1.mdl",
+	"models/r_nor_fxss2/r_nor_fxss2.mdl",
+	"models/r_nor_m/resis_normal_male.mdl",
+	"models/r_nor_mxss1/r_nor_mxss1.mdl",
+	"models/r_nor_mxss2/r_nor_mxss2.mdl",
+	"models/r_sni_f/resis_sniper_female.mdl",
+	"models/r_sni_fxss1/r_sni_fxss1.mdl",
+	"models/r_sni_fxss2/r_sni_fxss2.mdl",
+	"models/r_sni_m/resis_sniper_male.mdl",
+	"models/r_sni_mxss1/r_sni_mxss1.mdl",
+	"models/r_sni_mxss2/r_sni_mxss2.mdl",
+	"models/r_sol_f/resis_soldier_female.mdl",
+	"models/r_sol_fxss1/r_sol_fxss1.mdl",
+	"models/r_sol_fxss2/r_sol_fxss2.mdl",
+	"models/r_sol_m/resis_soldier_male.mdl",
+	"models/r_sol_mxss1/r_sol_mxss1.mdl",
+	"models/r_sol_mxss2/r_sol_mxss2.mdl",
 };
 
 const char *g_ppszRandomCombineModels[] =
@@ -85,10 +116,42 @@ const char *g_ppszRandomCombineModels[] =
 	"models/combine_soldier_prisonguard.mdl",
 	"models/combine_super_soldier.mdl",
 	"models/police.mdl",
+	"models/c_eng_f/combine_engineer_female.mdl",
+	"models/c_eng_fxss1/c_eng_fxss1.mdl",
+	"models/c_eng_fxss2/c_eng_fxss2.mdl",
+	"models/c_eng_m/combine_engineer_male.mdl",
+	"models/c_eng_mxss1/c_eng_mxss1.mdl",
+	"models/c_eng_mxss2/c_eng_mxss2.mdl",
+	"models/c_med_f/combine_medic_female.mdl",
+	"models/c_med_fxss1/c_med_fxss1.mdl",
+	"models/c_med_fxss2/c_med_fxss2.mdl",
+	"models/c_med_m/combine_medic_male.mdl",
+	"models/c_med_mxss1/c_med_mxss1.mdl",
+	"models/c_med_mxss1/c_med_mxss2.mdl",
+	"models/c_nor_f/combine_normal_female.mdl",
+	"models/c_nor_fxss1/c_nor_fxss1.mdl",
+	"models/c_nor_fxss2/c_nor_fxss2.mdl",
+	"models/c_nor_m/combine_normal_male.mdl",
+	"models/c_nor_mxss1/c_nor_mxss1.mdl",
+	"models/c_nor_mxss2/c_nor_mxss2.mdl",
+	"models/c_sni_m/combine_sniper_male.mdl",
+	"models/c_sni_mxss1/c_sni_mxss1.mdl",
+	"models/c_sni_mxss2/c_sni_mxss2.mdl",
+	"models/c_sol_f/combine_soldier_female.mdl",
+	"models/c_sol_fxss1/c_sol_fxss1.mdl",
+	"models/c_sol_fxss2/c_sol_fxss2.mdl",
+	"models/c_sol_m/combine_soldier_male.mdl",
+	"models/c_sol_mxss1/c_sol_mxss1.mdl",
+	"models/c_sol_mxss2/c_sol_mxss2.mdl",
+	
+
+
+
+
 };
 
 
-#define MAX_COMBINE_MODELS 4
+#define MAX_COMBINE_MODELS 31
 #define MODEL_CHANGE_INTERVAL 5.0f
 #define TEAM_CHANGE_INTERVAL 5.0f
 
@@ -194,41 +257,41 @@ void CHL2MP_Player::GiveAllItems( void )
 	
 }
 
-void CHL2MP_Player::GiveDefaultItems( void )
+void CHL2MP_Player::GiveDefaultItems(void)
 {
 	EquipSuit();
-
-	CBasePlayer::GiveAmmo( 255,	"Pistol");
-	CBasePlayer::GiveAmmo( 45,	"SMG1");
-	CBasePlayer::GiveAmmo( 1,	"grenade" );
-	CBasePlayer::GiveAmmo( 6,	"Buckshot");
-	CBasePlayer::GiveAmmo( 6,	"357" );
+	GiveNamedItem("weapon_emptyhands");
+	//CBasePlayer::GiveAmmo( 255,	"Pistol");
+	//CBasePlayer::GiveAmmo( 45,	"SMG1");
+	//CBasePlayer::GiveAmmo( 1,	"grenade" );
+	//CBasePlayer::GiveAmmo( 6,	"Buckshot");
+	//CBasePlayer::GiveAmmo( 6,	"357" );
 
 	if ( GetPlayerModelType() == PLAYER_SOUNDS_METROPOLICE || GetPlayerModelType() == PLAYER_SOUNDS_COMBINESOLDIER )
 	{
-		GiveNamedItem( "weapon_stunstick" );
+	//GiveNamedItem( "weapon_stunstick" );
 	}
 	else if ( GetPlayerModelType() == PLAYER_SOUNDS_CITIZEN )
 	{
-		GiveNamedItem( "weapon_crowbar" );
+	//GiveNamedItem( "weapon_crowbar" );
 	}
-	
-	GiveNamedItem( "weapon_pistol" );
+
+	/*GiveNamedItem( "weapon_pistol" );
 	GiveNamedItem( "weapon_smg1" );
 	GiveNamedItem( "weapon_frag" );
-	GiveNamedItem( "weapon_physcannon" );
+	GiveNamedItem( "weapon_physcannon" );*/
 
-	const char *szDefaultWeaponName = engine->GetClientConVarValue( engine->IndexOfEdict( edict() ), "cl_defaultweapon" );
+	const char *szDefaultWeaponName = engine->GetClientConVarValue(engine->IndexOfEdict(edict()), "cl_defaultweapon");
 
-	CBaseCombatWeapon *pDefaultWeapon = Weapon_OwnsThisType( szDefaultWeaponName );
+	CBaseCombatWeapon *pDefaultWeapon = Weapon_OwnsThisType(szDefaultWeaponName);
 
-	if ( pDefaultWeapon )
+	if (pDefaultWeapon)
 	{
-		Weapon_Switch( pDefaultWeapon );
+		Weapon_Switch(pDefaultWeapon);
 	}
 	else
 	{
-		Weapon_Switch( Weapon_OwnsThisType( "weapon_physcannon" ) );
+		Weapon_Switch(Weapon_OwnsThisType("weapon_physcannon"));
 	}
 }
 
@@ -256,26 +319,26 @@ void CHL2MP_Player::PickDefaultSpawnTeam( void )
 		}
 		else
 		{
-			CTeam *pCombine = g_Teams[TEAM_COMBINE];
-			CTeam *pRebels = g_Teams[TEAM_REBELS];
+			CTeam *pCombine = g_Teams[TEAM_CHASERS];
+			CTeam *pRebels = g_Teams[TEAM_RUNNERS];
 
 			if ( pCombine == NULL || pRebels == NULL )
 			{
-				ChangeTeam( random->RandomInt( TEAM_COMBINE, TEAM_REBELS ) );
+				ChangeTeam( random->RandomInt( TEAM_CHASERS, TEAM_RUNNERS ) );
 			}
 			else
 			{
 				if ( pCombine->GetNumPlayers() > pRebels->GetNumPlayers() )
 				{
-					ChangeTeam( TEAM_REBELS );
+					ChangeTeam( TEAM_RUNNERS );
 				}
 				else if ( pCombine->GetNumPlayers() < pRebels->GetNumPlayers() )
 				{
-					ChangeTeam( TEAM_COMBINE );
+					ChangeTeam( TEAM_CHASERS );
 				}
 				else
 				{
-					ChangeTeam( random->RandomInt( TEAM_COMBINE, TEAM_REBELS ) );
+					ChangeTeam( random->RandomInt( TEAM_CHASERS, TEAM_RUNNERS ) );
 				}
 			}
 		}
@@ -374,7 +437,7 @@ void CHL2MP_Player::SetPlayerTeamModel( void )
 	if ( modelIndex == -1 || ValidatePlayerModel( szModelName ) == false )
 	{
 		szModelName = "models/Combine_Soldier.mdl";
-		m_iModelType = TEAM_COMBINE;
+		m_iModelType = TEAM_CHASERS;
 
 		char szReturnString[512];
 
@@ -382,7 +445,7 @@ void CHL2MP_Player::SetPlayerTeamModel( void )
 		engine->ClientCommand ( edict(), szReturnString );
 	}
 
-	if ( GetTeamNumber() == TEAM_COMBINE )
+	if ( GetTeamNumber() == TEAM_CHASERS )
 	{
 		if ( Q_stristr( szModelName, "models/human") )
 		{
@@ -392,9 +455,9 @@ void CHL2MP_Player::SetPlayerTeamModel( void )
 			szModelName = g_ppszRandomCombineModels[g_iLastCombineModel];
 		}
 
-		m_iModelType = TEAM_COMBINE;
+		m_iModelType = TEAM_CHASERS;
 	}
-	else if ( GetTeamNumber() == TEAM_REBELS )
+	else if ( GetTeamNumber() == TEAM_RUNNERS )
 	{
 		if ( !Q_stristr( szModelName, "models/human") )
 		{
@@ -404,7 +467,7 @@ void CHL2MP_Player::SetPlayerTeamModel( void )
 			szModelName = g_ppszRandomCitizenModels[g_iLastCitizenModel];
 		}
 
-		m_iModelType = TEAM_REBELS;
+		m_iModelType = TEAM_RUNNERS;
 	}
 	
 	SetModel( szModelName );
@@ -435,23 +498,23 @@ void CHL2MP_Player::SetPlayerModel( void )
 		szModelName = pszCurrentModelName;
 	}
 
-	if ( GetTeamNumber() == TEAM_COMBINE )
+	if ( GetTeamNumber() == TEAM_CHASERS )
 	{
 		int nHeads = ARRAYSIZE( g_ppszRandomCombineModels );
 		
 		g_iLastCombineModel = ( g_iLastCombineModel + 1 ) % nHeads;
 		szModelName = g_ppszRandomCombineModels[g_iLastCombineModel];
 
-		m_iModelType = TEAM_COMBINE;
+		m_iModelType = TEAM_CHASERS;
 	}
-	else if ( GetTeamNumber() == TEAM_REBELS )
+	else if ( GetTeamNumber() == TEAM_RUNNERS )
 	{
 		int nHeads = ARRAYSIZE( g_ppszRandomCitizenModels );
 
 		g_iLastCitizenModel = ( g_iLastCitizenModel + 1 ) % nHeads;
 		szModelName = g_ppszRandomCitizenModels[g_iLastCitizenModel];
 
-		m_iModelType = TEAM_REBELS;
+		m_iModelType = TEAM_RUNNERS;
 	}
 	else
 	{
@@ -462,11 +525,11 @@ void CHL2MP_Player::SetPlayerModel( void )
 
 		if ( Q_stristr( szModelName, "models/human") )
 		{
-			m_iModelType = TEAM_REBELS;
+			m_iModelType = TEAM_RUNNERS;
 		}
 		else
 		{
-			m_iModelType = TEAM_COMBINE;
+			m_iModelType = TEAM_CHASERS;
 		}
 	}
 
@@ -475,7 +538,7 @@ void CHL2MP_Player::SetPlayerModel( void )
 	if ( modelIndex == -1 )
 	{
 		szModelName = "models/Combine_Soldier.mdl";
-		m_iModelType = TEAM_COMBINE;
+		m_iModelType = TEAM_CHASERS;
 
 		char szReturnString[512];
 
@@ -654,7 +717,7 @@ bool CHL2MP_Player::WantsLagCompensationOnEntity( const CBasePlayer *pPlayer, co
 
 Activity CHL2MP_Player::TranslateTeamActivity( Activity ActToTranslate )
 {
-	if ( m_iModelType == TEAM_COMBINE )
+	if ( m_iModelType == TEAM_CHASERS )
 		 return ActToTranslate;
 	
 	if ( ActToTranslate == ACT_RUN )
@@ -1319,12 +1382,12 @@ CBaseEntity* CHL2MP_Player::EntSelectSpawnPoint( void )
 
 	if ( HL2MPRules()->IsTeamplay() == true )
 	{
-		if ( GetTeamNumber() == TEAM_COMBINE )
+		if ( GetTeamNumber() == TEAM_CHASERS )
 		{
 			pSpawnpointName = "info_player_combine";
 			pLastSpawnPoint = g_pLastCombineSpawn;
 		}
-		else if ( GetTeamNumber() == TEAM_REBELS )
+		else if ( GetTeamNumber() == TEAM_RUNNERS )
 		{
 			pSpawnpointName = "info_player_rebel";
 			pLastSpawnPoint = g_pLastRebelSpawn;
@@ -1392,11 +1455,11 @@ ReturnSpot:
 
 	if ( HL2MPRules()->IsTeamplay() == true )
 	{
-		if ( GetTeamNumber() == TEAM_COMBINE )
+		if ( GetTeamNumber() == TEAM_CHASERS )
 		{
 			g_pLastCombineSpawn = pSpot;
 		}
-		else if ( GetTeamNumber() == TEAM_REBELS ) 
+		else if ( GetTeamNumber() == TEAM_RUNNERS ) 
 		{
 			g_pLastRebelSpawn = pSpot;
 		}
