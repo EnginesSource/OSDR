@@ -5,6 +5,7 @@
 // $NoKeywords: $
 //=============================================================================//
 #include "cbase.h"
+#include "Iplayermodelpanel.h"
 #include "vgui_int.h"
 #include "ienginevgui.h"
 #include "itextmessage.h"
@@ -197,6 +198,8 @@ void VGui_CreateGlobalPanels( void )
 {
 	VPANEL gameToolParent = enginevgui->GetPanel( PANEL_CLIENTDLL_TOOLS );
 	VPANEL toolParent = enginevgui->GetPanel( PANEL_TOOLS );
+	VPANEL GameUiDll = enginevgui->GetPanel( PANEL_GAMEUIDLL);
+	PlayerModelPanel->Create(GameUiDll);
 #if defined( TRACK_BLOCKING_IO )
 	VPANEL gameDLLPanel = enginevgui->GetPanel( PANEL_GAMEDLL );
 #endif
@@ -240,7 +243,7 @@ void VGui_Shutdown()
 	messagechars->Destroy();
 	loadingdisc->Destroy();
 	internalCenterPrint->Destroy();
-
+	PlayerModelPanel->Destroy();
 	if ( g_pClientMode )
 	{
 		g_pClientMode->VGui_Shutdown();
