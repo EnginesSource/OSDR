@@ -53,6 +53,7 @@ public:
 	DECLARE_DATADESC();
 
 	virtual void Precache( void );
+	virtual void InitialSpawn(void); //Added for bloodscreen
 	virtual void Spawn( void );
 	virtual void PostThink( void );
 	virtual void PreThink( void );
@@ -90,7 +91,7 @@ public:
 	void CreateRagdollEntity( void );
 	void GiveAllItems( void );
 	void GiveDefaultItems( void );
-
+	void HideBloodScreen(void);
 	void SetSpawnPointName(char *spawnName);
 
 	void NoteWeaponFired( void );

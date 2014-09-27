@@ -25,6 +25,7 @@
 #include "SoundEmitterSystem/isoundemittersystembase.h"
 
 #include "ilagcompensationmanager.h"
+#include "bloodscreenVM.h"
 
 int g_iLastCitizenModel = 0;
 int g_iLastCombineModel = 0;
@@ -200,6 +201,7 @@ void CHL2MP_Player::UpdateOnRemove( void )
 void CHL2MP_Player::Precache( void )
 {
 	BaseClass::Precache();
+	PrecacheModel("models/VGUI/bloodanimation.mdl");
 
 	PrecacheModel ( "sprites/glow01.vmt" );
 
@@ -223,13 +225,37 @@ void CHL2MP_Player::Precache( void )
 	PrecacheScriptSound( "NPC_Citizen.die" );
 }
 
+void CHL2MP_Player::InitialSpawn(void)
+{
+	BaseClass::InitialSpawn();
+	//Attatch the model to the player that we are going to use to display the blood screen on death effect
+	CGEBloodScreenVM *vm = (CGEBloodScreenVM*)CreateEntityByName("gebloodscreen");
+	if (vm)
+	{
+		vm->SetAbsOrigin(GetAbsOrigin());
+		vm->SetOwner(this);
+		vm->SetIndex(1);
+		DispatchSpawn(vm);
+		vm->FollowEntity(this, false);
+		m_hViewModel.Set(1, vm);
+
+		vm->SetModel("");
+	}
+
+	
+
+	// Disable npc interp if we are localhost
+	if (!engine->IsDedicatedServer() && entindex() == 1)
+		engine->ClientCommand(edict(), "cl_interp_npcs 0");
+}
+
 //Set Players spawnpoint target name
 void CHL2MP_Player::SetSpawnPointName(char *spawnName)
 {
 //	char *debugline = "";
 	m_spawnPointName = spawnName;
-	Msg("Hey this is in the CHL2MP");
-	Msg(m_spawnPointName);
+	//Msg("Hey this is in the CHL2MP");
+	//Msg(m_spawnPointName);
 	/*strcpy(debugline, m_spawnPointName);
 	strcat(debugline, " is our new spawnpointname");
 	UTIL_SayTextAll(debugline);*/
@@ -371,6 +397,9 @@ void CHL2MP_Player::Spawn(void)
 	PickDefaultSpawnTeam();
 
 	BaseClass::Spawn();
+	//hide blood screen on respawn
+	CBaseViewModel *pViewModel = GetViewModel(1);
+	pViewModel->SetModel("");
 	
 	if ( !IsObserver() )
 	{
@@ -1304,6 +1333,17 @@ void CHL2MP_Player::Event_Killed( const CTakeDamageInfo &info )
 	subinfo.SetDamageForce( m_vecTotalBulletForce );
 
 	SetNumAnimOverlays( 0 );
+
+	//BloodyScreen
+	CBaseViewModel *pViewModel = GetViewModel(1);
+	int noBlood = atoi(engine->GetClientConVarValue(entindex(), "cl_disablebloodscreen"));
+	if (noBlood == 0 && pViewModel)
+	{
+		pViewModel->SetModel("models/VGUI/bloodanimation.mdl");
+		pViewModel->RemoveEffects(EF_NODRAW);
+		int seq = RandomInt(0,4)+1;
+		pViewModel->SendViewModelMatchingSequence(seq);
+	}
 
 	// Note: since we're dead, it won't draw us on the client, but we don't set EF_NODRAW
 	// because we still want to transmit to the clients in our PVS.
