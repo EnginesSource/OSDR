@@ -359,9 +359,13 @@ void CMoveHelperServer::Con_NPrintf( int idx, char const* pFormat, ...)
 //-----------------------------------------------------------------------------
 bool CMoveHelperServer::PlayerFallingDamage( void )
 {
+	
+	
 	float flFallDamage = g_pGameRules->FlPlayerFallDamage( m_pHostPlayer );	
 	if ( flFallDamage > 0 )
 	{
+		
+		//Msg("Took %f fall damage\n",flFallDamage);
 		m_pHostPlayer->TakeDamage( CTakeDamageInfo( GetContainingEntity(INDEXENT(0)), GetContainingEntity(INDEXENT(0)), flFallDamage, DMG_FALL ) ); 
 		StartSound( m_pHostPlayer->GetAbsOrigin(), "Player.FallDamage" );
 

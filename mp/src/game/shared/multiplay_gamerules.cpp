@@ -47,9 +47,10 @@
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
 
-
+//Don't think we need to touch this line
 REGISTER_GAMERULES_CLASS( CMultiplayRules );
 
+//Pretty self explanatory, decides how long you can chat after the round is over
 ConVar mp_chattime(
 		"mp_chattime", 
 		"10", 
@@ -58,6 +59,7 @@ ConVar mp_chattime(
 		true, 1,
 		true, 120 );
 
+//Relates to game time per map in minutes
 #ifdef GAME_DLL
 void MPTimeLimitCallback( IConVar *var, const char *pOldString, float flOldValue )
 {
@@ -73,23 +75,26 @@ void MPTimeLimitCallback( IConVar *var, const char *pOldString, float flOldValue
 }
 #endif 
 
+//Convar for how long a server stays on a map
 ConVar mp_timelimit( "mp_timelimit", "0", FCVAR_NOTIFY|FCVAR_REPLICATED, "game time per map in minutes"
 #ifdef GAME_DLL
 					, MPTimeLimitCallback 
 #endif
 					);
-
-ConVar fraglimit( "mp_fraglimit","0", FCVAR_NOTIFY|FCVAR_REPLICATED, "The number of kills at which the map ends");
-
+ConVar fraglimit("mp_fraglimit", "0", FCVAR_NOTIFY | FCVAR_REPLICATED, "The number of kills at which the map ends");
+//Do you want ugly icons above peoples heads when they talk?
 ConVar mp_show_voice_icons( "mp_show_voice_icons", "1", FCVAR_REPLICATED, "Show overhead player voice icons when players are speaking.\n" );
 
 #ifdef GAME_DLL
 
+//For SourceTV reasons we might need to delay the map change time (who still uses SourceTV?)
 ConVar tv_delaymapchange( "tv_delaymapchange", "0", 0, "Delays map change until broadcast is complete" );
 
+//Did someone piss off the admin? Time to restart the round then!
 ConVar mp_restartgame( "mp_restartgame", "0", FCVAR_GAMEDLL, "If non-zero, game will restart in the specified number of seconds" );
 ConVar mp_restartgame_immediate( "mp_restartgame_immediate", "0", FCVAR_GAMEDLL, "If non-zero, game will restart immediately" );
 
+//Is a map killing your server population? Then lets cycle out of it after N seconds!
 ConVar mp_mapcycle_empty_timeout_seconds( "mp_mapcycle_empty_timeout_seconds", "0", FCVAR_REPLICATED, "If nonzero, server will cycle to the next map if it has been empty on the current map for N seconds");
 
 void cc_SkipNextMapInCycle()
@@ -113,14 +118,15 @@ void cc_GotoNextMapInCycle()
 		MultiplayRules()->ChangeLevel();
 	}
 }
-
+//Dont remove this
+#ifndef TF_DLL		// TF overrides the default value of this convar
+ConVar mp_waitingforplayers_time("mp_waitingforplayers_time", "0", FCVAR_GAMEDLL, "WaitingForPlayers time length in seconds");
+#endif
+//Don't want to play de_dust or zps_cabin for the umpteenth time? Then skip it!
 ConCommand skip_next_map( "skip_next_map", cc_SkipNextMapInCycle, "Skips the next map in the map rotation for the server." );
 ConCommand changelevel_next( "changelevel_next", cc_GotoNextMapInCycle, "Immediately changes to the next map in the map rotation for the server." );
 
-#ifndef TF_DLL		// TF overrides the default value of this convar
-ConVar mp_waitingforplayers_time( "mp_waitingforplayers_time", "0", FCVAR_GAMEDLL, "WaitingForPlayers time length in seconds" );
-#endif
-
+//I dont think I've ever seen anyone use these before, I have no idea if they even work
 ConVar mp_waitingforplayers_restart( "mp_waitingforplayers_restart", "0", FCVAR_GAMEDLL, "Set to 1 to start or restart the WaitingForPlayers period." );
 ConVar mp_waitingforplayers_cancel( "mp_waitingforplayers_cancel", "0", FCVAR_GAMEDLL, "Set to 1 to end the WaitingForPlayers period." );
 ConVar mp_clan_readyrestart( "mp_clan_readyrestart", "0", FCVAR_GAMEDLL, "If non-zero, game will restart once someone from each team gives the ready signal" );
@@ -147,6 +153,7 @@ CUtlVector<char*> CMultiplayRules::m_MapList;
 //=========================================================
 bool CMultiplayRules::IsMultiplayer( void )
 {
+	//Who would have known, it's multiplayer after all!
 	return true;
 }
 
@@ -155,6 +162,7 @@ bool CMultiplayRules::IsMultiplayer( void )
 //-----------------------------------------------------------------------------
 int CMultiplayRules::Damage_GetTimeBased( void )
 {
+	
 	int iDamage = ( DMG_PARALYZE | DMG_NERVEGAS | DMG_POISON | DMG_RADIATION | DMG_DROWNRECOVER | DMG_ACID | DMG_SLOWBURN );
 	return iDamage;
 }
@@ -164,6 +172,7 @@ int CMultiplayRules::Damage_GetTimeBased( void )
 //-----------------------------------------------------------------------------
 int	CMultiplayRules::Damage_GetShouldGibCorpse( void )
 {
+	
 	int iDamage = ( DMG_CRUSH | DMG_FALL | DMG_BLAST | DMG_SONIC | DMG_CLUB );
 	return iDamage;
 }
@@ -173,6 +182,7 @@ int	CMultiplayRules::Damage_GetShouldGibCorpse( void )
 //-----------------------------------------------------------------------------
 int CMultiplayRules::Damage_GetShowOnHud( void )
 {
+	
 	int iDamage = ( DMG_POISON | DMG_ACID | DMG_DROWN | DMG_BURN | DMG_SLOWBURN | DMG_NERVEGAS | DMG_RADIATION | DMG_SHOCK );
 	return iDamage;
 }
@@ -255,6 +265,8 @@ bool CMultiplayRules::Damage_ShouldNotBleed( int iDmgType )
 //*********************************************************
 // Rules for the half-life multiplayer game.
 //*********************************************************
+
+//Note: We shouldn't have a need to touch this I believe --Wazanator
 CMultiplayRules::CMultiplayRules()
 {
 #ifndef CLIENT_DLL
@@ -327,7 +339,9 @@ bool CMultiplayRules::Init()
 #else 
 
 	extern bool			g_fGameOver;
-
+	//=========================================================
+	//WEAPON, ITEM AND AMMO RESPAWN TIME RELATED STUFF RIGHT HERE!!!
+	//=========================================================
 	#define ITEM_RESPAWN_TIME	30
 	#define WEAPON_RESPAWN_TIME	20
 	#define AMMO_RESPAWN_TIME	20
@@ -342,19 +356,10 @@ bool CMultiplayRules::Init()
 	// override some values for multiplay.
 
 		// suitcharger
-#ifndef TF_DLL
-//=============================================================================
-// HPE_BEGIN:
-// [menglish] CS doesn't have the suitcharger either
-//=============================================================================
-#ifndef CSTRIKE_DLL
 ConVarRef suitcharger( "sk_suitcharger" );
 		suitcharger.SetValue( 30 );
- #endif
-//=============================================================================
-// HPE_END
-//=============================================================================
-#endif
+
+
 	}
 
 
@@ -373,27 +378,11 @@ ConVarRef suitcharger( "sk_suitcharger" );
 		}
 
 		float flTimeLimit = mp_timelimit.GetFloat() * 60;
-		float flFragLimit = fraglimit.GetFloat();
 		
-		if ( flTimeLimit != 0 && gpGlobals->curtime >= flTimeLimit )
+		if (flTimeLimit != 0 && gpGlobals->curtime >= flTimeLimit)
 		{
 			GoToIntermission();
 			return;
-		}
-
-		if ( flFragLimit )
-		{
-			// check if any player is over the frag limit
-			for ( int i = 1; i <= gpGlobals->maxClients; i++ )
-			{
-				CBasePlayer *pPlayer = UTIL_PlayerByIndex( i );
-
-				if ( pPlayer && pPlayer->FragCount() >= flFragLimit )
-				{
-					GoToIntermission();
-					return;
-				}
-			}
 		}
 	}
 
@@ -448,6 +437,7 @@ ConVarRef suitcharger( "sk_suitcharger" );
 	//=========================================================
 	bool CMultiplayRules::IsDeathmatch( void )
 	{
+		//No this isn't a deathmatch
 		return true;
 	}
 
@@ -615,11 +605,11 @@ ConVarRef suitcharger( "sk_suitcharger" );
 
 	//=========================================================
 	//=========================================================
-	float CMultiplayRules::FlPlayerFallDamage( CBasePlayer *pPlayer )
+	float CMultiplayRules::FlPlayerFallDamage(CBasePlayer *pPlayer)
 	{
 		int iFallDamage = (int)falldamage.GetFloat();
 
-		switch ( iFallDamage )
+		switch (iFallDamage)
 		{
 		case 1://progressive
 			pPlayer->m_Local.m_flFallVelocity -= PLAYER_MAX_SAFE_FALL_SPEED;
@@ -630,7 +620,7 @@ ConVarRef suitcharger( "sk_suitcharger" );
 			return 10;
 			break;
 		}
-	} 
+	}
 
 	//=========================================================
 	//=========================================================
@@ -688,7 +678,9 @@ ConVarRef suitcharger( "sk_suitcharger" );
 	//=========================================================
 	float CMultiplayRules::FlPlayerSpawnTime( CBasePlayer *pPlayer )
 	{
-		return gpGlobals->curtime;//now!
+		//OSDR respawn with however long mp_respawntime is set to
+		return (int)respawntime.GetInt();
+		
 	}
 
 	bool CMultiplayRules::AllowAutoTargetCrosshair( void )
@@ -702,7 +694,8 @@ ConVarRef suitcharger( "sk_suitcharger" );
 	//=========================================================
 	int CMultiplayRules::IPointsForKill( CBasePlayer *pAttacker, CBasePlayer *pKilled )
 	{
-		return 1;
+		//OSDR setup so mappers and server runners can determine player kill value
+		return (int)playerkillvalue.GetInt();
 	}
 
 	//-----------------------------------------------------------------------------

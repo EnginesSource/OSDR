@@ -84,19 +84,19 @@ void CTeamplayRules::Think ( void )
 		return;
 	}
 
-	float flFragLimit = fraglimit.GetFloat();
-	if ( flFragLimit )
-	{
-		// check if any team is over the frag limit
-		for ( int i = 0; i < num_teams; i++ )
-		{
-			if ( team_scores[i] >= flFragLimit )
-			{
-				ChangeLevel();
-				return;
-			}
-		}
-	}
+	//float flFragLimit = fraglimit.GetFloat();
+	//if ( flFragLimit )
+	//{
+	//	// check if any team is over the frag limit
+	//	for ( int i = 0; i < num_teams; i++ )
+	//	{
+	//		if ( team_scores[i] >= flFragLimit )
+	//		{
+	//			ChangeLevel();
+	//			return;
+	//		}
+	//	}
+	//}
 }
 
 //=========================================================

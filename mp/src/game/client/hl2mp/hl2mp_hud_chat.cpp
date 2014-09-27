@@ -108,9 +108,9 @@ Color CHudChat::GetClientColor( int clientIndex )
 		{
 		case TEAM_CHASERS	: return g_ColorBlue;
 		case TEAM_RUNNERS	: return g_ColorRed;
-		default	: return g_ColorYellow;
+		default	: return g_ColorGreen;
 		}
 	}
 
-	return g_ColorYellow;
+	return g_ColorGreen;
 }

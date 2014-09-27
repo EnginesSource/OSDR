@@ -839,7 +839,7 @@ void CGameRules::ClientSettingsChanged( CBasePlayer *pPlayer )
 	if ( pszOldName[0] != 0 && Q_strcmp( pszOldName, pszName ) )
 	{
 		char text[256];
-		Q_snprintf( text,sizeof(text), "%s changed name to %s\n", pszOldName, pszName );
+		Q_snprintf( text,sizeof(text), "NOTICE: %s changed name to %s\n", pszOldName, pszName );
 
 		UTIL_ClientPrintAll( HUD_PRINTTALK, text );
 

@@ -164,7 +164,7 @@ CHL2MP_Player::CHL2MP_Player() : m_PlayerAnimState( this )
 	m_angEyeAngles.Init();
 
 	m_iLastWeaponFireUsercmd = 0;
-
+	
 	m_flNextModelChangeTime = 0.0f;
 	m_flNextTeamChangeTime = 0.0f;
 
@@ -172,6 +172,9 @@ CHL2MP_Player::CHL2MP_Player() : m_PlayerAnimState( this )
 
     m_bEnterObserver = false;
 	m_bReady = false;
+
+	//Each player keeps track of their current spawn point name they are using
+	m_spawnPointName = "start";
 
 	BaseClass::ChangeTeam( 0 );
 	
@@ -218,6 +221,18 @@ void CHL2MP_Player::Precache( void )
 	PrecacheScriptSound( "NPC_MetroPolice.Die" );
 	PrecacheScriptSound( "NPC_CombineS.Die" );
 	PrecacheScriptSound( "NPC_Citizen.die" );
+}
+
+//Set Players spawnpoint target name
+void CHL2MP_Player::SetSpawnPointName(char *spawnName)
+{
+//	char *debugline = "";
+	m_spawnPointName = spawnName;
+	Msg("Hey this is in the CHL2MP");
+	Msg(m_spawnPointName);
+	/*strcpy(debugline, m_spawnPointName);
+	strcat(debugline, " is our new spawnpointname");
+	UTIL_SayTextAll(debugline);*/
 }
 
 void CHL2MP_Player::GiveAllItems( void )
@@ -1378,47 +1393,29 @@ CBaseEntity* CHL2MP_Player::EntSelectSpawnPoint( void )
 	CBaseEntity *pSpot = NULL;
 	CBaseEntity *pLastSpawnPoint = g_pLastSpawn;
 	edict_t		*player = edict();
-	const char *pSpawnpointName = "info_player_deathmatch";
-
-	if ( HL2MPRules()->IsTeamplay() == true )
-	{
-		if ( GetTeamNumber() == TEAM_CHASERS )
-		{
-			pSpawnpointName = "info_player_combine";
-			pLastSpawnPoint = g_pLastCombineSpawn;
-		}
-		else if ( GetTeamNumber() == TEAM_RUNNERS )
-		{
-			pSpawnpointName = "info_player_rebel";
-			pLastSpawnPoint = g_pLastRebelSpawn;
-		}
-
-		if ( gEntList.FindEntityByClassname( NULL, pSpawnpointName ) == NULL )
-		{
-			pSpawnpointName = "info_player_deathmatch";
-			pLastSpawnPoint = g_pLastSpawn;
-		}
-	}
-
+	const char *pSpawnpointName = m_spawnPointName;
+	
+	//Dark voodoo happens here, some how g_pLastSpawn never gets set yet the game has no issues with that.
 	pSpot = pLastSpawnPoint;
-	// Randomize the start spot
-	for ( int i = random->RandomInt(1,5); i > 0; i-- )
-		pSpot = gEntList.FindEntityByClassname( pSpot, pSpawnpointName );
-	if ( !pSpot )  // skip over the null point
-		pSpot = gEntList.FindEntityByClassname( pSpot, pSpawnpointName );
+
+	for (int i = random->RandomInt(1, 5); i > 0; i--)
+		pSpot = gEntList.FindEntityByName(pSpot, pSpawnpointName);
+	if (!pSpot)
+		pSpot = gEntList.FindEntityByName(pSpot, pSpawnpointName);
+
+
 
 	CBaseEntity *pFirstSpot = pSpot;
-
-	do 
+	do
 	{
-		if ( pSpot )
+		if (pSpot)
 		{
 			// check if pSpot is valid
-			if ( g_pGameRules->IsSpawnPointValid( pSpot, this ) )
+			if (g_pGameRules->IsSpawnPointValid(pSpot, this))
 			{
-				if ( pSpot->GetLocalOrigin() == vec3_origin )
+				if (pSpot->GetLocalOrigin() == vec3_origin)
 				{
-					pSpot = gEntList.FindEntityByClassname( pSpot, pSpawnpointName );
+					pSpot = gEntList.FindEntityByName(pSpot, pSpawnpointName);
 					continue;
 				}
 
@@ -1427,46 +1424,32 @@ CBaseEntity* CHL2MP_Player::EntSelectSpawnPoint( void )
 			}
 		}
 		// increment pSpot
-		pSpot = gEntList.FindEntityByClassname( pSpot, pSpawnpointName );
-	} while ( pSpot != pFirstSpot ); // loop if we're not back to the start
+		pSpot = gEntList.FindEntityByName(pSpot, pSpawnpointName);
+	} while (pSpot != pFirstSpot); // loop if we're not back to the start
 
 	// we haven't found a place to spawn yet,  so kill any guy at the first spawn point and spawn there
-	if ( pSpot )
+	if (pSpot)
 	{
 		CBaseEntity *ent = NULL;
-		for ( CEntitySphereQuery sphere( pSpot->GetAbsOrigin(), 128 ); (ent = sphere.GetCurrentEntity()) != NULL; sphere.NextEntity() )
+		for (CEntitySphereQuery sphere(pSpot->GetAbsOrigin(), 128); (ent = sphere.GetCurrentEntity()) != NULL; sphere.NextEntity())
 		{
 			// if ent is a client, kill em (unless they are ourselves)
-			if ( ent->IsPlayer() && !(ent->edict() == player) )
-				ent->TakeDamage( CTakeDamageInfo( GetContainingEntity(INDEXENT(0)), GetContainingEntity(INDEXENT(0)), 300, DMG_GENERIC ) );
+			if (ent->IsPlayer() && !(ent->edict() == player))
+				ent->TakeDamage(CTakeDamageInfo(GetContainingEntity(INDEXENT(0)), GetContainingEntity(INDEXENT(0)), 300, DMG_GENERIC));
 		}
 		goto ReturnSpot;
 	}
 
-	if ( !pSpot  )
+	if (!pSpot)
 	{
-		pSpot = gEntList.FindEntityByClassname( pSpot, "info_player_start" );
+		pSpot = gEntList.FindEntityByName(pSpot, "start");
 
-		if ( pSpot )
+		if (pSpot)
 			goto ReturnSpot;
 	}
 
 ReturnSpot:
-
-	if ( HL2MPRules()->IsTeamplay() == true )
-	{
-		if ( GetTeamNumber() == TEAM_CHASERS )
-		{
-			g_pLastCombineSpawn = pSpot;
-		}
-		else if ( GetTeamNumber() == TEAM_RUNNERS ) 
-		{
-			g_pLastRebelSpawn = pSpot;
-		}
-	}
-
 	g_pLastSpawn = pSpot;
-
 	m_flSlamProtectTime = gpGlobals->curtime + 0.5;
 
 	return pSpot;

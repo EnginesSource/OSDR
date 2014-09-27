@@ -195,12 +195,10 @@ void CPlayerModelPanel::updateImage(void) {
 		playerImage->SetImage(img);
 		break;
 	case 32:
-		img = scheme()->GetImage("models/hl2arcade/combine_medic_male_03.vmt", false);
-		playerImage->SetImage(img);
+		
 		break;
 	case 33:
-		img = scheme()->GetImage("models/hl2arcade/combine_normal_female_01.vmt", false);
-		playerImage->SetImage(img);
+
 		break;
 	case 34:
 		img = scheme()->GetImage("models/hl2arcade/combine_normal_female_02.vmt", false);
@@ -211,8 +209,7 @@ void CPlayerModelPanel::updateImage(void) {
 		playerImage->SetImage(img);
 		break;
 	case 36:
-		img = scheme()->GetImage("models/hl2arcade/combine_normal_male_01.vmt", false);
-		playerImage->SetImage(img);
+
 		break;
 	case 37:
 		img = scheme()->GetImage("models/hl2arcade/combine_normal_male_02.vmt", false);
@@ -231,20 +228,16 @@ void CPlayerModelPanel::updateImage(void) {
 		playerImage->SetImage(img);
 		break;
 	case 41:
-		img = scheme()->GetImage("models/hl2arcade/combine_sniper_male_03.vmt", false);
-		playerImage->SetImage(img);
+
 		break;
 	case 42:
-		img = scheme()->GetImage("models/hl2arcade/combine_soldier_female_01.vmt", false);
-		playerImage->SetImage(img);
+
 		break;
 	case 43:
-		img = scheme()->GetImage("models/hl2arcade/combine_soldier_female_02.vmt", false);
-		playerImage->SetImage(img);
+
 		break;
 	case 44:
-		img = scheme()->GetImage("models/hl2arcade/combine_soldier_female_03.vmt", false);
-		playerImage->SetImage(img);
+
 		break;
 	case 45:
 		img = scheme()->GetImage("models/hl2arcade/gordon.vmt", false);
@@ -271,8 +264,7 @@ void CPlayerModelPanel::updateImage(void) {
 		playerImage->SetImage(img);
 		break;
 	case 51:
-		img = scheme()->GetImage("models/hl2arcade/resis_engineer_male03.vmt", false);
-		playerImage->SetImage(img);
+
 		break;
 	case 52:
 		img = scheme()->GetImage("models/hl2arcade/resis_medic_female01.vmt", false);
@@ -384,6 +376,13 @@ void CPlayerModelPanel::nextImage(void) {
 	else
 	{
 		CURRENTMODEL++;
+		//sadly we had some broken models
+		if (CURRENTMODEL == 32 || CURRENTMODEL == 33 || CURRENTMODEL == 36 || CURRENTMODEL == 51 || CURRENTMODEL == 41 || CURRENTMODEL == 42 || CURRENTMODEL == 43 || CURRENTMODEL == 44)
+		{
+			CURRENTMODEL++;
+			PlayerModelPanel->nextModel();
+			return;
+		}
 		updateImage();
 	}
 }
@@ -396,6 +395,12 @@ void CPlayerModelPanel::previousImage(void) {
 	}
 	else
 	{
+		if (CURRENTMODEL == 32 || CURRENTMODEL == 33 || CURRENTMODEL == 36 || CURRENTMODEL == 51 || CURRENTMODEL == 41 || CURRENTMODEL == 42 || CURRENTMODEL == 43 || CURRENTMODEL == 44)
+		{
+			CURRENTMODEL--;
+			PlayerModelPanel->previousModel();
+			return;
+		}
 		CURRENTMODEL--;
 		updateImage();
 	}
@@ -405,7 +410,13 @@ void CPlayerModelPanel::setModel(void) {
 	switch (CURRENTMODEL)
 	{
 	case 1:
+		DoOver:
 		CURRENTMODEL = RandomInt(2, MAXMODELS);
+		if (CURRENTMODEL == 32 || CURRENTMODEL == 33 || CURRENTMODEL == 36 || CURRENTMODEL == 51 || CURRENTMODEL == 41 || CURRENTMODEL == 42 || CURRENTMODEL == 43 || CURRENTMODEL == 44)
+		{
+			goto DoOver;
+			break;
+		}
 		setModel();
 		updateImage();
 		break;
@@ -500,10 +511,10 @@ void CPlayerModelPanel::setModel(void) {
 		engine->ClientCmd("cl_playermodel models/c_med_mxss1/c_med_mxss1.mdl");
 		break;
 	case 32:
-		engine->ClientCmd("cl_playermodel models/c_med_mxss2/c_med_mxss2.mdl");
+		
 		break;
 	case 33:
-		engine->ClientCmd("cl_playermodel models/c_nor_f/combine_nomral_female.mdl");
+		
 		break;
 	case 34:
 		engine->ClientCmd("cl_playermodel models/c_nor_fxss1/c_nor_fxss1.mdl");
@@ -512,7 +523,7 @@ void CPlayerModelPanel::setModel(void) {
 		engine->ClientCmd("cl_playermodel models/c_nor_fxss2/c_nor_fxss2.mdl");
 		break;
 	case 36:
-		engine->ClientCmd("cl_playermodel models/c_nor_m/combine_nomral_male.mdl");
+		
 		break;
 	case 37:
 		engine->ClientCmd("cl_playermodel models/c_nor_mxss1/c_nor_mxss1.mdl");
@@ -527,16 +538,16 @@ void CPlayerModelPanel::setModel(void) {
 		engine->ClientCmd("cl_playermodel models/c_sni_mxss1/c_sni_mxss1.mdl");
 		break;
 	case 41:
-		engine->ClientCmd("cl_playermodel models/c_sni_mxss2/c_sni_mxss2.mdl");
+		
 		break;
 	case 42:
-		engine->ClientCmd("cl_playermodel models/c_sol_f/combine_soldier_female.mdl");
+		
 		break;
 	case 43:
-		engine->ClientCmd("cl_playermodel models/c_sol_fxss1/c_sol_fxss1.mdl");
+		
 		break;
 	case 44:
-		engine->ClientCmd("cl_playermodel models/c_sol_fxss2/c_sol_fxss2.mdl");
+		
 		break;
 	case 45:
 		engine->ClientCmd("cl_playermodel models/gordon/gordon.mdl");
@@ -557,7 +568,7 @@ void CPlayerModelPanel::setModel(void) {
 		engine->ClientCmd("cl_playermodel models/r_eng_mxss1/r_eng_mxss1.mdl");
 		break;
 	case 51:
-		engine->ClientCmd("cl_playermodel models/r_eng_mxss2/r_eng_mxss2.mdl");
+		
 		break;
 	case 52:
 		engine->ClientCmd("cl_playermodel models/r_med_f/resis_medic_female.mdl");

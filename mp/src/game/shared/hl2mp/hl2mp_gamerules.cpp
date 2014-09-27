@@ -11,6 +11,7 @@
 #include <KeyValues.h>
 #include "ammodef.h"
 
+
 #ifdef CLIENT_DLL
 	#include "c_hl2mp_player.h"
 #else
@@ -32,6 +33,7 @@
 	#include "voice_gamemgr.h"
 	#include "hl2mp_gameinterface.h"
 	#include "hl2mp_cvars.h"
+	#include "GamePlayEntities.h"
 
 #ifdef DEBUG	
 	#include "hl2mp_bot_temp.h"
@@ -112,9 +114,7 @@ static const char *s_PreserveEnts[] =
 	"info_node",
 	"info_target",
 	"info_node_hint",
-	"info_player_deathmatch",
-	"info_player_combine",
-	"info_player_rebel",
+	"info_player_deathrun",
 	"info_map_parameters",
 	"keyframe_rope",
 	"move_rope",
@@ -130,6 +130,7 @@ static const char *s_PreserveEnts[] =
 	"predicted_viewmodel",
 	"worldspawn",
 	"point_devshot_camera",
+	"map_rules",
 	"", // END Marker
 };
 
@@ -313,42 +314,48 @@ void CHL2MPRules::Think( void )
 	}
 
 	//float flTimeLimit = mp_timelimit.GetFloat() * 60;
-	float flFragLimit = fraglimit.GetFloat();
+	//float flFragLimit = fraglimit.GetFloat();
 	
 	if ( GetMapRemainingTime() < 0 )
 	{
 		GoToIntermission();
 		return;
 	}
-
-	if ( flFragLimit )
+	if( roundsOver)
 	{
-		if( IsTeamplay() == true )
-		{
-			CTeam *pCombine = g_Teams[TEAM_CHASERS];
-			CTeam *pRebels = g_Teams[TEAM_RUNNERS];
-
-			if ( pCombine->GetScore() >= flFragLimit || pRebels->GetScore() >= flFragLimit )
-			{
-				GoToIntermission();
-				return;
-			}
-		}
-		else
-		{
-			// check if any player is over the frag limit
-			for ( int i = 1; i <= gpGlobals->maxClients; i++ )
-			{
-				CBasePlayer *pPlayer = UTIL_PlayerByIndex( i );
-
-				if ( pPlayer && pPlayer->FragCount() >= flFragLimit )
-				{
-					GoToIntermission();
-					return;
-				}
-			}
-		}
+		GoToIntermission();
+		roundsOver = false;
+		return;
+	
 	}
+	//if ( flFragLimit )
+	//{
+	//	if( IsTeamplay() == true )
+	//	{
+	//		CTeam *pCombine = g_Teams[TEAM_CHASERS];
+	//		CTeam *pRebels = g_Teams[TEAM_RUNNERS];
+
+	//		if ( pCombine->GetScore() >= flFragLimit || pRebels->GetScore() >= flFragLimit )
+	//		{
+	//			GoToIntermission();
+	//			return;
+	//		}
+	//	}
+	//	else
+	//	{
+	//		// check if any player is over the frag limit
+	//		for ( int i = 1; i <= gpGlobals->maxClients; i++ )
+	//		{
+	//			CBasePlayer *pPlayer = UTIL_PlayerByIndex( i );
+
+	//			if ( pPlayer && pPlayer->FragCount() >= flFragLimit )
+	//			{
+	//				GoToIntermission();
+	//				return;
+	//			}
+	//		}
+	//	}
+	//}
 
 	if ( gpGlobals->curtime > m_tmNextPeriodicThink )
 	{		
@@ -826,11 +833,11 @@ int CHL2MPRules::PlayerRelationship( CBaseEntity *pPlayer, CBaseEntity *pTarget 
 	// you are either on another player's team, or you are not.
 	if ( !pPlayer || !pTarget || !pTarget->IsPlayer() || IsTeamplay() == false )
 		return GR_NOTTEAMMATE;
-
 	if ( (*GetTeamID(pPlayer) != '\0') && (*GetTeamID(pTarget) != '\0') && !stricmp( GetTeamID(pPlayer), GetTeamID(pTarget) ) )
 	{
 		return GR_TEAMMATE;
 	}
+
 #endif
 
 	return GR_NOTTEAMMATE;
@@ -838,10 +845,7 @@ int CHL2MPRules::PlayerRelationship( CBaseEntity *pPlayer, CBaseEntity *pTarget 
 
 const char *CHL2MPRules::GetGameDescription( void )
 { 
-	if ( IsTeamplay() )
-		return "Team Deathmatch"; 
-
-	return "Deathmatch"; 
+	return "Deathrun"; 
 } 
 
 bool CHL2MPRules::IsConnectedUserInfoChangeAllowed( CBasePlayer *pPlayer )
@@ -1050,7 +1054,7 @@ void CHL2MPRules::RestartGame()
 	IGameEvent * event = gameeventmanager->CreateEvent( "round_start" );
 	if ( event )
 	{
-		event->SetInt("fraglimit", 0 );
+		//event->SetInt("fraglimit", 0 );
 		event->SetInt( "priority", 6 ); // HLTV event priority, not transmitted
 
 		event->SetString("objective","DEATHMATCH");

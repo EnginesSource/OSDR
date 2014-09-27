@@ -34,6 +34,10 @@ extern ConVar	teamoverride;
 extern ConVar	defaultteam;
 extern ConVar	allowNPCs;
 
+//OSDR ConVars
+extern ConVar respawntime;
+extern ConVar playerkillvalue;
+
 extern ConVar	suitvolume;
 
 // Engine Cvars

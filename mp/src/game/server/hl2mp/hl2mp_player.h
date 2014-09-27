@@ -91,6 +91,8 @@ public:
 	void GiveAllItems( void );
 	void GiveDefaultItems( void );
 
+	void SetSpawnPointName(char *spawnName);
+
 	void NoteWeaponFired( void );
 
 	void ResetAnimation( void );
@@ -142,6 +144,8 @@ private:
 
 	CNetworkQAngle( m_angEyeAngles );
 	CPlayerAnimState   m_PlayerAnimState;
+
+	char *m_spawnPointName;
 
 	int m_iLastWeaponFireUsercmd;
 	int m_iModelType;
